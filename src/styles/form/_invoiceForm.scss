@@ -1,0 +1,115 @@
+.invoiceForm {
+  position: fixed;
+  z-index: 500;
+  top: 8rem;
+  left: -600px;
+  max-width: 600px;
+  width: 100%;
+  height: calc(100vh - 8rem);
+  background-color: var(--bg-form);
+  border-radius: 0 1rem 1rem 0;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  transition: 300ms;
+  box-shadow: 0 1px 4px rgba($color: blue, $alpha: 0.2);
+
+  &.open {
+    left: 0;
+
+    @include large() {
+      left: 10rem;
+    }
+  }
+
+  @include small() {
+    padding: 2rem 3rem;
+  }
+
+  @include large() {
+    top: 0;
+    left: calc(-600px);
+    height: 100vh;
+  }
+
+  &__top {
+    padding-block: 2rem;
+
+    & > h2 {
+      @include typography(2.5rem, 500, 1);
+
+      @include medium() {
+        @include typography(2.8rem, 500, 1);
+      }
+    }
+  }
+
+  &__form {
+    overflow-y: scroll;
+  }
+
+  &__bottom {
+    padding-block: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    & > div {
+      @include flex-center();
+    }
+
+    button {
+      padding: 1rem 1rem;
+      margin-left: 1rem;
+      border-radius: 4rem;
+      @include typography(1.4rem, 400, 1.5);
+
+      @include small() {
+        padding: 1rem 2rem;
+        @include typography(1.5rem, 400, 1.5);
+      }
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      &.cancel {
+        background-color: var(--bg-card);
+        color: var(--text-p);
+      }
+
+      &.draft {
+        background-color: var(--bg-sidebar);
+        color: var(--text-p);
+      }
+
+      &.save {
+        background-color: var(--accent);
+        color: aliceblue;
+      }
+    }
+  }
+
+  &__overlay {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    z-index: -1;
+    top: 8rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 8rem);
+    background-color: rgba($color: #000000, $alpha: 0.1);
+
+    @include large() {
+      left: 10rem;
+      top: 0;
+      height: 100vh;
+    }
+
+    &.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}

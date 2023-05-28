@@ -1,0 +1,339 @@
+.singleInvoice {
+  padding-block: 120px;
+
+  @include large() {
+    padding-block: 50px 100px;
+  }
+
+  &__container {
+    max-width: 680px;
+    margin-inline: auto;
+    width: 90%;
+  }
+
+  &__page {
+    @include flex-center();
+    justify-content: flex-start;
+    gap: 1rem;
+
+    &:hover {
+      & > span {
+        opacity: 0.5;
+      }
+    }
+
+    & > ion-icon {
+      color: var(--accent);
+    }
+
+    & > span {
+      color: var(--text-p);
+    }
+  }
+
+  &__top {
+    margin-top: 3.5rem;
+    padding: 3.5rem 3rem;
+    border-radius: 1rem;
+    background-color: var(--bg-card);
+
+    @include small() {
+      @include flex-between();
+    }
+
+    &--status {
+      @include flex-between();
+      gap: 1rem;
+
+      & > span {
+        @include typography(1.5rem, 300);
+      }
+
+      &-btn {
+        height: 4.5rem;
+        width: 12rem;
+        @include flex-center();
+        gap: 1rem;
+        border-radius: 0.8rem;
+
+        &.paid {
+          background: var(--paid-bg);
+
+          & > span {
+            background-color: var(--paid);
+          }
+
+          & > h4 {
+            color: var(--paid);
+          }
+        }
+
+        &.pending {
+          background: var(--pending-bg);
+
+          & > span {
+            background-color: var(--pending);
+          }
+
+          & > h4 {
+            color: var(--pending);
+          }
+        }
+
+        &.draft {
+          background: var(--draft-bg);
+
+          & > span {
+            background-color: var(--draft);
+          }
+
+          & > h4 {
+            color: var(--draft);
+          }
+        }
+
+        & > span {
+          width: 0.7rem;
+          height: 0.7rem;
+          border-radius: 50%;
+        }
+      }
+
+      @include small() {
+        justify-content: flex-start;
+      }
+    }
+
+    &--actions {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 2rem;
+      background-color: var(--bg-card);
+      @include flex-center();
+
+      & > button {
+        height: 4.5rem;
+        width: 8rem;
+        margin-left: 1rem;
+        border-radius: 4rem;
+
+        &:hover {
+          opacity: 0.5;
+        }
+
+        &.edit {
+          background-color: var(--bg-body);
+          color: var(--text-p);
+        }
+
+        &.delete {
+          background-color: red;
+          color: aliceblue;
+        }
+
+        &.marked {
+          background-color: goldenrod;
+          color: aliceblue;
+        }
+      }
+
+      @include small() {
+        all: unset;
+      }
+    }
+  }
+
+  &__details {
+    margin-top: 3rem;
+    background-color: var(--bg-card);
+    padding: 3rem;
+    border-radius: 1.5rem;
+
+    &--top {
+      @include flex-center();
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+
+      @include medium() {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      h3 {
+        @include flex-center();
+        justify-content: flex-start;
+        gap: 0.1rem;
+        @include typography(1.6rem, 500, 1);
+
+        & > span {
+          color: var(--text-p);
+          opacity: 0.5;
+        }
+      }
+
+      p {
+        @include typography(1.4rem, 300, 1.5);
+      }
+    }
+
+    &--mid {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 2rem;
+
+      @include medium() {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      p {
+        @include typography(1.4rem, 300, 1.5);
+      }
+      h3 {
+        @include typography(1.8rem, 600, 1);
+      }
+      a {
+        color: var(--text-heading);
+        @include typography(1.8rem, 600, 1);
+      }
+
+      & > .date {
+        @include flex-between();
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    &--bottom {
+      background-color: var(--dark-card);
+      margin-top: 3rem;
+      padding: 3rem;
+      border-radius: 1rem 1rem 0 0;
+
+      table {
+        width: 100%;
+        tbody {
+          @include flex-between();
+
+          @include small() {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          tr {
+            width: 100%;
+            @include small() {
+              display: grid;
+              grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+
+            & > td {
+              @include typography(1.5rem, 300, 1.5);
+            }
+
+            &.data {
+              & > td {
+                color: var(--text-heading);
+                @include typography(1.5rem, 500, 1.5);
+
+                @include small() {
+                  padding-top: 2rem;
+                }
+              }
+            }
+
+            & > .none {
+              display: none;
+
+              @include small() {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &--amount {
+      @include flex-between();
+      padding: 3.5rem 3rem;
+      background-color: var(--total);
+      border-radius: 0 0 1rem 1rem;
+    }
+  }
+}
+
+// modal
+.overlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 200ms;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+
+    .modal {
+      transform: scale(1);
+    }
+  }
+
+  .modal {
+    max-width: 400px;
+    width: 100%;
+    background-color: var(--bg-card);
+    position: relative;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5rem 3rem;
+    transform: scale(0.5);
+    transition: 0.3s;
+
+    &__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: var(--text-p);
+      font-size: 3rem;
+    }
+
+    &__actions {
+      & > button {
+        height: 4.5rem;
+        width: 8rem;
+        margin-left: 1rem;
+        border-radius: 4rem;
+
+        &:hover {
+          opacity: 0.5;
+        }
+
+        &.cancel {
+          background-color: var(--bg-body);
+          color: var(--text-p);
+        }
+
+        &.delete {
+          background-color: red;
+          color: aliceblue;
+        }
+      }
+    }
+  }
+}

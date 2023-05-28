@@ -1,0 +1,276 @@
+.home {
+  padding-block: 120px;
+
+  @include large() {
+    padding-block: 50px 100px;
+  }
+
+  &__container {
+    max-width: 800px;
+    margin-inline: auto;
+    width: 95%;
+  }
+
+  &__toppart {
+    @include flex-between();
+    gap: 2rem;
+
+    &--content {
+      & > h1 {
+        @include typography(2rem, 700, 1.2);
+
+        @include medium() {
+          @include typography(3.6rem, 700, 1.2);
+        }
+      }
+
+      & > p {
+        @include typography(1.4rem, 300, 1.5);
+      }
+    }
+
+    &--filter {
+      margin-left: auto;
+      position: relative;
+
+      @include small() {
+        margin-right: 3rem;
+      }
+
+      &-text {
+        cursor: pointer;
+        @include flex-between();
+        gap: 1rem;
+
+        & > h4 {
+          @include typography(1.6rem, 700, 1.2);
+
+          @include medium() {
+            @include typography(1.8rem, 700, 1.2);
+          }
+        }
+
+        & > ion-icon {
+          color: var(--accent);
+        }
+      }
+    }
+
+    &--dropdown {
+      position: absolute;
+      top: 150%;
+      left: 50%;
+      width: 250%;
+      height: auto;
+      background-color: var(--bg-card);
+      transform: translateX(-50%);
+      padding: 2rem 2rem;
+      border-radius: 1rem;
+      @include flex-center();
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+      opacity: 0;
+      pointer-events: none;
+      transition: 250ms;
+
+      &.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      & > label {
+        @include flex-center();
+        justify-content: flex-start;
+        gap: 1.5rem;
+        cursor: pointer;
+
+        &:hover {
+          .box {
+            border: 1px solid var(--accent);
+          }
+        }
+
+        & > .box {
+          width: 2.2rem;
+          height: 2.2rem;
+          border: 1px solid transparent;
+          background-color: var(--bg-body);
+          border-radius: 0.5rem;
+          transition: 0.25s;
+          @include flex-center();
+
+          & > ion-icon {
+            display: none;
+          }
+
+          &.fill {
+            background-color: var(--accent);
+
+            & > ion-icon {
+              color: white;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // button
+  &__addbutton {
+    @include flex-center();
+    gap: 0.8rem;
+    background-color: var(--accent);
+    padding: 0.8rem 1rem;
+    border-radius: 10rem;
+    transition: 200ms;
+
+    &:hover {
+      background-color: var(--accent-hover);
+    }
+
+    & > span {
+      @include flex-center();
+      padding: 0.6rem;
+      background: white;
+      border-radius: 50%;
+      color: var(--accent);
+    }
+
+    & > h4 {
+      @include typography(1.6rem, 600, 1.5);
+      display: none;
+      color: white;
+
+      @include small() {
+        display: block;
+      }
+    }
+  }
+}
+
+// invoice
+.invoice {
+  margin-top: 5rem;
+  &__wrapper {
+    @include flex-center();
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--bg-card);
+    width: 100%;
+    padding: 2rem 2rem;
+    border-radius: 0.8rem;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid var(--accent);
+    }
+
+    @include medium() {
+      @include flex-between();
+    }
+
+    & > h3 {
+      @include typography(1.7rem, 500, 1);
+      margin-bottom: 2rem;
+
+      @include medium() {
+        margin-bottom: 0;
+      }
+    }
+
+    & > p {
+      @include typography(1.5rem, 300, 1.5);
+    }
+
+    & > .name {
+      margin-left: auto;
+
+      @include medium() {
+        margin-left: 0;
+      }
+    }
+
+    & > h2 {
+      order: 5;
+      @include typography(2rem, 700, 0.9);
+
+      @include medium() {
+        order: 4;
+      }
+    }
+
+    & > div {
+      order: 4;
+      margin-left: auto;
+      @include flex-center();
+      gap: 1rem;
+      height: 4.5rem;
+      width: 12rem;
+      border-radius: 1rem;
+      grid-row: span 2;
+
+      &.paid {
+        background: var(--paid-bg);
+
+        & > span {
+          background-color: var(--paid);
+        }
+
+        & > h4 {
+          color: var(--paid);
+        }
+      }
+
+      &.pending {
+        background: var(--pending-bg);
+
+        & > span {
+          background-color: var(--pending);
+        }
+
+        & > h4 {
+          color: var(--pending);
+        }
+      }
+
+      &.draft {
+        background: var(--draft-bg);
+
+        & > span {
+          background-color: var(--draft);
+        }
+
+        & > h4 {
+          color: var(--draft);
+        }
+      }
+
+      @include medium() {
+        order: 5;
+        margin-left: 0;
+      }
+
+      & > span {
+        width: 0.7rem;
+        height: 0.7rem;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.empty {
+  width: 100%;
+  text-align: center;
+  height: 20vh;
+  display: grid;
+  place-items: center;
+}

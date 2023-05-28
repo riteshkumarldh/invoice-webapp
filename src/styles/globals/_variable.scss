@@ -1,0 +1,38 @@
+// css variable syntax
+.dark {
+  --bg-body: #141625;
+  --bg-sidebar: #1e2139;
+  --bg-card: #1e2139;
+  --text-heading: #fff;
+  --text-p: #dfe3fa;
+  --paid: rgb(51 214 159);
+  --paid-bg: rgb(51 214 159 / 0.06);
+  --pending: rgb(255 143 0);
+  --pending-bg: rgb(255 143 0 / 0.06);
+  --draft: rgb(223 227 250);
+  --draft-bg: rgb(223 227 250 / 0.06);
+  --accent: #7c5dfa;
+  --accent-hover: #9277ff;
+  --dark-card: #252945;
+  --total: #0c0e16;
+  --bg-form: #141625;
+}
+
+.light {
+  --bg-body: #f8f8fb;
+  --bg-sidebar: #373b53;
+  --bg-card: #ffffff;
+  --text-heading: #0c0e16;
+  --text-p: #888eb0;
+  --paid: rgb(51 214 159);
+  --paid-bg: rgb(51 214 159 / 0.06);
+  --pending: rgb(255 143 0);
+  --pending-bg: rgb(255 143 0 / 0.06);
+  --draft: rgb(223 227 250);
+  --draft-bg: rgb(223 227 250 / 0.06);
+  --accent: #7c5dfa;
+  --accent-hover: #9277ff;
+  --dark-card: #f8f8f8;
+  --total: whitesmoke;
+  --bg-form: #fff;
+}
