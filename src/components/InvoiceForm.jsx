@@ -1,4 +1,6 @@
 import { useInvoice } from "../context/useContext";
+// component
+import Form from "./Form";
 
 export default function InvoiceForm() {
   const { form, setForm } = useInvoice();
@@ -8,7 +10,7 @@ export default function InvoiceForm() {
         <h2>Create Invoice</h2>
       </div>
 
-      <div className="invoiceForm__form"></div>
+      <Form />
 
       <div className="invoiceForm__bottom">
         <button onClick={() => setForm(false)} className="cancel">
