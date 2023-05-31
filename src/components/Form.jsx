@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { senderAddressForm } from "../utils/constants";
+import { clientAddressForm } from "../utils/constants";
 
 export default function Form() {
   const [senderAddress, setSenderAddress] = useState({
@@ -105,6 +107,8 @@ export default function Form() {
     ]);
   };
 
+  console.log(items);
+
   const handleDeleteItem = (id) => {
     setItems((prev) =>
       prev.filter((item) => {
@@ -122,67 +126,12 @@ export default function Form() {
   //   console.log(clientName, clientEmail);
   //   console.log(clientAddress);
 
-  const senderAddressForm = [
-    {
-      id: 1,
-      name: "street",
-      unique: "senderStreet",
-      type: "text",
-      label: "Street Address",
-    },
-    {
-      id: 2,
-      name: "city",
-      unique: "senderCity",
-      type: "text",
-      label: "City",
-    },
-    {
-      id: 3,
-      name: "postCode",
-      unique: "senderPostCode",
-      type: "text",
-      label: "Post Code",
-    },
-    {
-      id: 4,
-      name: "country",
-      unique: "senderCountry",
-      type: "text",
-      label: "Country",
-    },
-  ];
-
-  const clientAddressForm = [
-    {
-      id: 1,
-      name: "street",
-      unique: "clientStreet",
-      type: "text",
-      label: "Client Address",
-    },
-    {
-      id: 2,
-      name: "city",
-      unique: "clientCity",
-      type: "text",
-      label: "City",
-    },
-    {
-      id: 3,
-      name: "postCode",
-      unique: "clientPostCode",
-      type: "text",
-      label: "Post Code",
-    },
-    {
-      id: 4,
-      name: "country",
-      unique: "clientCountry",
-      type: "text",
-      label: "Country",
-    },
-  ];
+  const handleSetItems = (e, index) => {
+    const arr = [...items];
+    arr[index][e.target.name] = e.target.value;
+    console.log(arr);
+    setItems(arr);
+  };
 
   return (
     <div className="form">
@@ -299,20 +248,38 @@ export default function Form() {
 
       <div className="">
         {items.length > 0 &&
-          items.map((item) => {
+          items.map((item, i) => {
             return (
               <div key={item.id} className="form__items">
                 <div>
                   <label htmlFor="itemName">Item Name</label>
-                  <input type="text" name="itemName" id="itemName" />
+                  <input
+                    value={items[i].name}
+                    onChange={(e) => handleSetItems(e, i)}
+                    type="text"
+                    name="name"
+                    id="itemName"
+                  />
                 </div>
                 <div>
                   <label htmlFor="qty">Qty.</label>
-                  <input type="text" name="qty" id="qty" />
+                  <input
+                    value={items[i].quantity}
+                    onChange={(e) => handleSetItems(e, i)}
+                    type="text"
+                    name="quantity"
+                    id="qty"
+                  />
                 </div>
                 <div>
                   <label htmlFor="price">Price</label>
-                  <input type="text" name="price" id="price" />
+                  <input
+                    value={items[i].price}
+                    onChange={(e) => handleSetItems(e, i)}
+                    type="text"
+                    name="price"
+                    id="price"
+                  />
                 </div>
                 <div>
                   <label htmlFor="total">Total</label>
